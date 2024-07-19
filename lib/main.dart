@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:json_parshing/routes/routes.dart';
-import 'package:json_parshing/screens/provider/home_screen_provider.dart';
+import 'package:json_parshing/screens/Lec-8.1/provider/home_screen_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
       routes: MyRoutes.myRoutes,
     );

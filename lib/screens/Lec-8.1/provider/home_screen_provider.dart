@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../modal/photosmodal.dart';
@@ -17,5 +16,9 @@ class PhotosProvider extends ChangeNotifier{
     List photo = await jsonParsing();
     photoList = photo.map((e) => PhotosModal.fromMap(e),).toList();
     notifyListeners();
+  }
+
+  PhotosProvider(){
+    fromList();
   }
 }
