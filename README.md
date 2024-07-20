@@ -123,3 +123,9 @@ class HomeScreen extends StatelessWidget {
 <a href="https://github.com/Sahilk0809/json_parsing/tree/master/lib/screens/Lec-8.1"> Click here for the source code </a>
 
 [jsonRecord.webm](https://github.com/user-attachments/assets/0542bda1-7dd2-4a80-a87b-0e10104d9e8b)
+
+# Part-2
+
+<img src="https://github.com/user-attachments/assets/a66f9005-1ce0-422b-b5f2-e78b107fe7c8" height=65% width=22%>
+
+<a href="https://github.com/Sahilk0809/json_parsing/tree/master/lib/screens/Lec-8.2"> Click here for the source code </a>
