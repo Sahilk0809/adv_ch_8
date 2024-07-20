@@ -9,11 +9,7 @@ class UserProvider extends ChangeNotifier {
   Future<void> jsonParsing() async {
     String json = await rootBundle.loadString('assets/json/user.json');
     List user = jsonDecode(json);
-    userList = user
-        .map(
-          (e) => UserModal.fromJson(e),
-        )
-        .toList();
+    userList = user.map((e) => UserModal.fromJson(e),).toList();
   }
 
   UserProvider() {

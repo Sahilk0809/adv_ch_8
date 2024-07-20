@@ -23,6 +23,13 @@ class UserScreen extends StatelessWidget {
           trailing: Text(userProvider.userList[index].address.geo.lat),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(
+          Icons.javascript_sharp,
+          size: 40,
+        ),
+      ),
     );
   }
 }
