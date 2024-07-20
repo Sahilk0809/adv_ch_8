@@ -267,12 +267,18 @@ class UserScreen extends StatelessWidget {
           trailing: Text(userProvider.userList[index].address.geo.lat),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(
+          Icons.javascript_sharp,
+          size: 40,
+        ),
+      ),
     );
   }
 }
-
 ```
 
-<img src="https://github.com/user-attachments/assets/a66f9005-1ce0-422b-b5f2-e78b107fe7c8" height=65% width=22%>
+<img src="https://github.com/user-attachments/assets/b47971c1-7a6d-4f96-a755-e6ea07b7df47" height=65% width=22%>
 
 <a href="https://github.com/Sahilk0809/json_parsing/tree/master/lib/screens/Lec-8.2"> Click here for the source code </a>
