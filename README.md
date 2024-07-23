@@ -282,3 +282,141 @@ class UserScreen extends StatelessWidget {
 <img src="https://github.com/user-attachments/assets/b47971c1-7a6d-4f96-a755-e6ea07b7df47" height=65% width=22%>
 
 <a href="https://github.com/Sahilk0809/json_parsing/tree/master/lib/screens/Lec-8.2"> Click here for the source code </a>
+
+# 8.3 Json Data Parsing
+
+### Modal class
+
+```bash
+class PostsModal {
+  late int total, skip, limit;
+  late List<Posts> posts;
+
+  PostsModal({
+    required this.total,
+    required this.skip,
+    required this.limit,
+    required this.posts,
+  });
+
+  factory PostsModal.fromJson(Map m1) {
+    return PostsModal(
+      total: m1['total'],
+      skip: m1['skip'],
+      limit: m1['limit'],
+      posts: (m1['posts'] as List)
+          .map(
+            (e) => Posts.fromJson(e),
+          )
+          .toList(),
+    );
+  }
+}
+
+class Posts {
+  late int id, views, userId;
+  late String title, body;
+  late List tags;
+  late Reactions reactions;
+
+  Posts({
+    required this.id,
+    required this.views,
+    required this.userId,
+    required this.title,
+    required this.body,
+    required this.tags,
+    required this.reactions,
+  });
+
+  factory Posts.fromJson(Map m1) {
+    return Posts(
+      id: m1['id'],
+      views: m1['views'],
+      userId: m1['userId'],
+      title: m1['title'],
+      body: m1['body'],
+      tags: m1['tags'],
+      reactions: Reactions.fromJson(
+        m1['reactions'],
+      ),
+    );
+  }
+}
+
+class Reactions {
+  late int likes, dislikes;
+
+  Reactions({required this.likes, required this.dislikes});
+
+  factory Reactions.fromJson(Map m1) {
+    return Reactions(
+      likes: m1['likes'],
+      dislikes: m1['dislikes'],
+    );
+  }
+}
+
+```
+
+### Provider
+
+```bash
+import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:json_parshing/screens/Lec-8.3/modal/posts_modal.dart';
+
+class PostsProvider extends ChangeNotifier{
+
+  late PostsModal postsModal;
+
+   Future<void> jsonParsing() async {
+    String json = await rootBundle.loadString('assets/json/posts.json');
+    final posts = jsonDecode(json);
+    postsModal = PostsModal.fromJson(posts);
+    notifyListeners();
+  }
+
+  PostsProvider(){
+    jsonParsing();
+  }
+}
+```
+
+### Show data in screen
+
+```bash
+import 'package:flutter/material.dart';
+import 'package:json_parshing/screens/Lec-8.3/provider/posts_provider.dart';
+import 'package:provider/provider.dart';
+
+class PostsScreen extends StatelessWidget {
+  const PostsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    PostsProvider postsProvider = Provider.of<PostsProvider>(context);
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        leading: const Icon(Icons.account_circle_outlined),
+        title: const Text('Posts Json'),
+      ),
+      body: ListView.builder(
+        itemCount: postsProvider.postsModal.posts.length,
+        itemBuilder: (context, index) => ListTile(
+          leading: Text(postsProvider.postsModal.posts[index].id.toString()),
+          title: Text(postsProvider.postsModal.posts[index].title),
+          subtitle: Text(postsProvider.postsModal.posts[index].body),
+          trailing: Text(postsProvider.postsModal.posts[index].reactions.likes.toString()),
+        ),
+      ),
+    );
+  }
+}
+```
+
+<img src="https://github.com/user-attachments/assets/366fb635-7756-475d-9ffa-9c3e9fbc7749" height=65% width=22%>
+
+<a href="https://github.com/Sahilk0809/adv_ch_8/tree/master/lib/screens/Lec-8.3"> Click here for the source code </a>
